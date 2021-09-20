@@ -8,7 +8,7 @@ router.post('/', (req: Request, res: Response) => {
 
     /* Kod jest niepoprawny, zwrócmy odpowiedz w JSON */
 
-    if (!req.headers['authorization'] || !req.headers['authorization'] as unknown !== AUTHKEY)
+    if (!req.headers['authorization'] || req.headers['authorization'] !== AUTHKEY)
         return res.status(403).json({
             code: 403,
             error: 'Niepoprawny kod autoryzacji żądania.'
@@ -36,7 +36,7 @@ router.get('/:id', (req: Request, res: Response) => {
 
     /* Kod jest niepoprawny, zwrócmy odpowiedz w JSON */
 
-    if (!req.headers['authorization'] || !req.headers['authorization'] as unknown !== AUTHKEY)
+    if (!req.headers['authorization'] || req.headers['authorization'] !== AUTHKEY)
         return res.status(403).json({
             code: 403,
             error: 'Niepoprawny kod autoryzacji żądania.'
